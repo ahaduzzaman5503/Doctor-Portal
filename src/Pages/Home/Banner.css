@@ -1,0 +1,14 @@
+.homeBgImage{
+    background-repeat: no-repeat;
+    background-size: auto;
+     width: 1363px;
+    height: 838px;
+    color: black;
+}
+
+.btnCustom{
+    width: 120px;
+    height: 48px;
+    left: 84px;
+    top: 543px;
+}

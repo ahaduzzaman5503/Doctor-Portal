@@ -1,0 +1,16 @@
+.dentalCustom{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 150px;
+}
+
+.dentalImg{
+    width: 90%;
+    height: auto;
+}
+.dentalImg img{
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px gray;
+}
