@@ -7,10 +7,11 @@ const Footer = () => {
         <div className='mt-10' 
         style={{
           backgroundImage: `url(${footerBg})` ,
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          // backgroundOrigin: borderBox,
    }}>
         
-            <footer className="footer p-10 bg-neutral text-neutral-content">
+            <footer className="footer p-10 text-black">
           <div>
             <span className="footer-title">Services</span> 
             <Link to={"/"} className="link link-hover">Branding</Link>
@@ -33,7 +34,7 @@ const Footer = () => {
           </div>
 
 </footer>
-<div className="footer footer-center p-4 bg-base-300 text-base-content">
+<div className="footer footer-center p-4 text-base-content">
   <div>
     <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
   </div>

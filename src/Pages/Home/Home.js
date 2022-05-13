@@ -7,7 +7,7 @@ import DentalCare from './DentalCare';
 import Appointment from './Appointment';
 import TestomoInfo from './TestomoInfo';
 import Form from './Form';
-import Footer from './Footer';
+import Footer from '../Shared/Footer';
  
 const Home = () => {
     return (

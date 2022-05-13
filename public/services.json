@@ -1,0 +1,61 @@
+[
+    {
+        "_id": 1,
+        "name": "Headgear treatment",
+        "slots": [
+            "08.30 AM - 09.00 AM",
+            "09.00 AM - 09.30 AM",
+            "09.30 AM - 10.00 AM",
+            "10.00 AM - 10.30 AM",
+            "10.30 AM - 11.00 AM"
+        ]
+    },
+    {
+        "_id": 2,
+        "name": "Cosmetic Dentistry",
+        "slots": [
+         
+        ]
+    },
+    {
+        "_id": 3,
+        "name": "Teeth Cleaning",
+        "slots": [
+            "08.00 AM - 08.30 AM",
+            "08.30 AM - 09.00 AM",
+            "09.00 AM - 09.30 AM",
+            "09.30 AM - 10.00 AM"
+        ]
+    },
+    {
+        "_id": 4,
+        "name": "Teeth Jaw surgery",
+        "slots": [
+            "09.00 AM - 09.30 AM",
+            "09.30 AM - 10.00 AM",
+            "10.00 AM - 10.30 AM",
+            "10.30 AM - 11.00 AM"
+        ]
+    },
+    {
+        "_id": 5,
+        "name": "Palatal expansion",
+        "slots": [
+            "08.30 AM - 09.00 AM",
+            "09.00 AM - 09.30 AM",
+            "09.30 AM - 10.00 AM",
+            "10.00 AM - 10.30 AM"
+            
+        ]
+    },
+    {
+        "_id": 6,
+        "name": "Teeth Ortoho",
+        "slots": [
+            "08.00 AM - 08.30 AM",
+            "08.30 AM - 09.00 AM",
+            "09.00 AM - 09.30 AM"
+            
+        ]
+    }
+]
