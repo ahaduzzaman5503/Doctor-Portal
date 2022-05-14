@@ -14,7 +14,7 @@ const Service = ({service, setTreatment}) => {
                         <span>{slots[0]}</span>
                         : <span className='text-red-500'>No Slot Available</span>
                         }</p>
-                        <p className="pb-5"> <span>{slots.length} Space</span> Try Next Day</p>
+                        <p className="pb-5"> <span>{slots.length} Space have </span></p>
                         <label htmlFor="booking-modal" onClick={()=> setTreatment(service)}  disabled={slots.length===0}  className="btn btn-primary text-white">Book Appointment</label>
 
                     </div>

@@ -1,56 +1,83 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 
-
-const Login = () => {
-  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-  const { register, formState: { errors }, handleSubmit } = useForm();
+const SignUp = () => {
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
   const [
-    signInWithEmailAndPassword,
-    epUser,
-    epLoading,
-    epError
-  ] = useSignInWithEmailAndPassword(auth);
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
 
-  let singInError;
-  /*  Back to appointment route after login */
+
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "";
 
-useEffect(() =>{
-  if (googleUser || epUser) {
-    console.log(googleUser || epUser) 
-    navigate(from, {replace: true});
-  }
-},[googleUser, epUser, from, navigate ]);
+  let singUpError;
 
-if(epLoading || googleLoading){
-  return <Loading></Loading>
-}
-
-if(googleError || epError){
-  singInError = <p className='text-red-500'>{googleError?.message || epError?.message} </p>
-}
-
-  const onSubmit = data => {
-  console.log(data);
-  signInWithEmailAndPassword(data.email, data.password);
+  if(googleError || updateError){
+    singUpError = <p className='text-red-500'>{googleError?.message || updateError?.message} </p>
   }
 
+  if( loading || googleLoading || updating){
+    return <Loading></Loading>
+
+  }
+
+  if (googleUser) {
+    console.log(googleUser)
+  }
+
+  const onSubmit = async data => {
+  await createUserWithEmailAndPassword(data.email, data.password);
+  await updateProfile({ displayName: data.name });
+  console.log('update done');
+  navigate('/appointment');
+
+  }
     return (
         <div className='flex justify-center items-center h-screen container mx-auto'>
           <div className="card w-1/2	 bg-base-100 shadow-xl">
             <div className="card-body">
               <div className="card-body">
-                  <h1 className="text-4xl text-center my-5 font-bold"> Login Now!</h1>
+                  <h1 className="text-4xl text-center my-5 font-bold">Sign Up now!</h1>
                  <form onSubmit={handleSubmit(onSubmit)}>
-                        {/* Email Feild Start */}
+
+                        {/* Name Field Start */}
+                 <div className="form-control">
+                      <label className="label">
+                        <span className="label-text font-bold text-xl">Name</span>
+                      </label>
+                      <input type="text" placeholder="name" 
+                      className="input input-bordered " 
+                      {...register("name", {
+                        required: {
+                          value: true,
+                          message: "Name is Requard"
+                        },
+                        pattern: {
+                        minLength: 3,
+                          message: 'Provide a valid Text',
+                        }
+                      })}
+                      />
+                      <label className='label'>
+                      {errors.name?.type === 'required' && <span className='label-text-alt text-red-500'>{errors.name.message}</span>}
+                      {errors.name?.type === 'pattern' && <span className='label-text-alt text-red-500'>{errors.name.message}</span>}
+                      </label>
+                    </div>
+
+                        {/* Name Field End */}
+
+                        {/* Email Field Start */}
                  <div className="form-control">
                       <label className="label">
                         <span className="label-text font-bold text-xl">Email</span>
@@ -102,13 +129,13 @@ if(googleError || epError){
                     </div>
 
                     {/* Password Feild End */}
-                      {singInError}
-                      <button type='submit' value="Sign Up"  className="btn btn-dark w-full">Log In</button>
+                      {singUpError}
+                      <button type='submit' value="Login"  className="btn btn-dark w-full">Sign Up</button>
                  </form>
 
                  <div className=' container text-center mt-3'>
-                      <span className='text-xl mr-1'>New to Doctors Portal?</span>
-                      <Link to="/signup" className="link link-hover text-success text-xl">Create new account</Link>
+                      <span className='text-xl mr-1'>Alredy have an Accaunt?</span>
+                      <Link to="/register" className="link link-hover text-success ml-2 text-xl">Please Login</Link>
                  </div>
 
                    
@@ -136,4 +163,4 @@ if(googleError || epError){
     );
 };
 
-export default Login;
+export default SignUp;
